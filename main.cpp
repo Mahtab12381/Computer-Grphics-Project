@@ -180,10 +180,33 @@ void SkyComponent(bool isDay){
 void rainView(bool isRain)
 {
     if(isRain==false){
-    float x=0.0, y = -1.5, x1=-0.099;
+            if(isDay==true){
+    glBegin(GL_QUADS);
+    glColor3ub(77, 184, 255);
+    glVertex2f(-1.0, 0.0f);
+    glColor3ub(224, 224, 224);
+    glVertex2f(1.0f, 0.0f);
+    glVertex2f(1.0f, 1.0f);
+    glVertex2f(-1.0f, 1.0f);
+    glEnd();
+    cloudComponent();
+            }
+            else{
+                glBegin(GL_QUADS);
+                glColor3ub(0, 0, 0);
+                glVertex2f(-1.0, 0.0f);
+                glVertex2f(1.0f, 0.0f);
+                glVertex2f(1.0f, 1.0f);
+                glVertex2f(-1.0f, 1.0f);
+                glEnd();
+                cloudComponent();
+            }
+
+    float x=0.0, y = -0.5, x1=-0.099;
     glColor3ub(255,255,255);
     glPushMatrix();
-    glTranslatef(0,-1.0,0);
+    glTranslatef(0,-0.5,0);
+    glLineWidth(1.5);
     glBegin(GL_LINES);
     for(int i=500;i>=0;i--)
     {
@@ -213,8 +236,8 @@ void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     SkyComponent(isDay);
-    treeComponent();
     rainView(isRain);
+    treeComponent();
     glFlush();
 }
 
