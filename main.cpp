@@ -194,6 +194,13 @@ void cloudComponent(){
     Circle(0.5f, 0.72f,  0.07f, 204, 204, 204);
 }
 
+void cloudComponent2(){
+    Circle(0.58f, 0.75f,  0.060f, 255, 255, 255);
+    Circle(0.5f, 0.82f,  0.068f, 255, 255, 255);
+    Circle(0.42f, 0.75f,  0.068f, 255, 255, 255);
+    Circle(0.5f, 0.72f,  0.07f, 255, 255, 255);
+}
+
 void keymappings(bool keymap){
     if(keymap==true)
     anyText("t = toggle daynight , r = toggle rain , k = keymap show , s=toggle sound,e = exit", -0.95f, -.95f, 255, 255, 255);
@@ -201,8 +208,8 @@ void keymappings(bool keymap){
 
 void update(int value) {
 
-    if(cloud_position < -1.1)
-    cloud_position = 1.1f;
+    if(cloud_position < -1.2)
+    cloud_position = 1.2f;
     cloud_position -=cloud_speed;
 
     glutPostRedisplay();
@@ -216,6 +223,19 @@ void cloudView(){
 
     glTranslatef(cloud_position - 0.4f,-0.650,0);
     cloudComponent();
+
+    glPopMatrix();
+}
+
+void cloudviewDAy(){
+
+    glPushMatrix();
+
+    glTranslatef(cloud_position-0.4f,0,0);
+    cloudComponent2();
+
+    glTranslatef(cloud_position - 0.4f,-0.45,0);
+    cloudComponent2();
 
     glPopMatrix();
 }
@@ -298,6 +318,7 @@ void SkyComponent(bool isDay){
     glVertex2f(-1.0f, 1.0f);
     glEnd();
     sunComponent();
+    cloudviewDAy();
     }
     else{
     glBegin(GL_QUADS);
@@ -1058,4 +1079,3 @@ int main(int argc,char** argv)
     glutMainLoop();
     return 0;
 }
-
