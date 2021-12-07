@@ -1,8 +1,10 @@
 # depslib dependency file v1.0
-1638680069 source:e:\fall 21-22\computer graphics[o]\castle\main.cpp
+1638849482 source:e:\fall 21-22\computer graphics[o]\castle\main.cpp
+	<windows.h>
 	<iostream>
 	<GL/glut.h>
 	<cmath>
+	<mmsystem.h>
 
 1426328128 c:\program files (x86)\codeblocks\mingw\include\gl\glut.h
 	"freeglut_std.h"
