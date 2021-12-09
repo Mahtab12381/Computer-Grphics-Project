@@ -1,4 +1,4 @@
-#include <windows.h>
+#include <windows.h>7878
 #include <iostream>
 #include <GL/glut.h>
 #include <cmath>
@@ -240,6 +240,35 @@ void cloudviewDAy(){
     glPopMatrix();
 }
 
+void HalfCircle(float r1,float r,float g,float b){
+glPushMatrix();
+	glBegin(GL_POLYGON);
+	for(int i=0;i<200;i++)
+        {
+            glColor3ub(r,g,b);
+            float pi=3.1416/2;
+            float A=(i*2*pi)/200;
+            float r=r1;
+            float x = r * cos(A);
+            float y = r * sin(A);
+            glVertex2f(x,y);
+        }
+	glEnd();
+    glPopMatrix();
+}
+void window(){
+glBegin(GL_QUADS);
+                glColor3ub(96,96,96);
+                glVertex2f(0.015,-0.04);
+                glVertex2f(-0.015, -0.04);
+                glColor3ub(160,160,160);
+                glVertex2f(-0.015, -0.00);
+                glVertex2f(0.015, -0.00);
+                glEnd();
+                glTranslatef(-0.0005,0,0);
+                HalfCircle(0.015,160,160,160);
+                glLoadIdentity();
+}
 void distancetree(float r1){
 glPushMatrix();
 	glBegin(GL_POLYGON);
@@ -643,7 +672,6 @@ void distancetreeview(){
                 glEnd();
 
  }
-
  void groundview(){
 
 
@@ -944,6 +972,133 @@ void distancetreeview(){
                 glVertex2f(-0.32, -0.12);
                 glEnd();
 
+                glLineWidth(50);
+                glBegin(GL_LINES);
+                glColor3ub(190,190,190);
+                glVertex2f(0.085,0.17);
+                glVertex2f(-0.085, 0.17);
+                glEnd();
+
+                float x4=0;
+                for(int i=0;i<7;i++){
+                glPointSize(10);
+                glBegin(GL_POINTS);
+                glColor3ub(190,190,190);
+                glVertex2f(0.089+x4,0.185);
+                glEnd();
+                x4=x4-0.03;
+                  }
+
+                  glBegin(GL_QUADS);
+                glColor3ub(255,178,102);
+                glVertex2f(0.10,-0.40);
+                glVertex2f(-0.10, -0.40);
+                glColor3ub(255,204,153);
+                glVertex2f(-0.10, -0.30);
+                glVertex2f(0.10, -0.30);
+                glEnd();
+
+                glTranslatef(0,-0.309,0);
+                HalfCircle(0.1,255,204,153);
+                glLoadIdentity();
+
+                glLineWidth(1);
+                glBegin(GL_LINES);
+                glColor3ub(0,0,0);
+                glVertex2f(0.005,-0.21);
+                glVertex2f(0.005,-0.401);
+                glEnd();
+                glLineWidth(1);
+                glBegin(GL_LINES);
+                glColor3ub(0,0,0);
+                glVertex2f(-0.005,-0.21);
+                glVertex2f(-0.005,-0.401);
+                glEnd();
+
+                glTranslatef(-0.25,-0.25,0);
+                window();
+                glLoadIdentity();
+
+                glTranslatef(0.25,-0.25,0);
+                window();
+                glLoadIdentity();
+
+                glTranslatef(-0.10,-0.105,0);
+                window();
+                glLoadIdentity();
+
+                glTranslatef(-0.02,-0.105,0);
+                window();
+                glLoadIdentity();
+
+                glTranslatef(0.00,0.105,0);
+                window();
+                glLoadIdentity();
+
+                glTranslatef(0.00,0.28,0);
+                window();
+                glLoadIdentity();
+
+                glScalef(0.55,0.55,0);
+                glTranslatef(-0.33,0.23,0);
+                window();
+                glLoadIdentity();
+
+                glScalef(0.55,0.55,0);
+                glTranslatef(-0.33,0.12,0);
+                window();
+                glLoadIdentity();
+
+                glScalef(0.55,0.55,0);
+                glTranslatef(0.33,0.21,0);
+                window();
+                glLoadIdentity();
+
+                glTranslatef(0.111,-0.1,0);
+                window();
+                glLoadIdentity();
+
+                glScalef(0.55,0.9,0);
+                glTranslatef(0.14,-0.022,0);
+                window();
+                glLoadIdentity();
+
+                glScalef(0.55,0.9,0);
+                glTranslatef(0.26,-0.022,0);
+                window();
+                glLoadIdentity();
+
+                glBegin(GL_QUADS);
+                glColor3ub(200,200,200);
+                glVertex2f(0.32,-0.40);
+                glVertex2f(-0.32, -0.40);
+                glVertex2f(-0.32, -0.42);
+                glVertex2f(0.32, -0.42);
+                glEnd();
+
+                glBegin(GL_QUADS);
+                glColor3ub(204,102,0);
+                glVertex2f(0.34,-0.42);
+                glVertex2f(-0.34, -0.42);
+                glVertex2f(-0.34, -0.44);
+                glVertex2f(0.34, -0.44);
+                glEnd();
+
+                glBegin(GL_QUADS);
+                glColor3ub(200,200,200);
+                glVertex2f(0.36,-0.44);
+                glVertex2f(-0.36, -0.44);
+                glVertex2f(-0.36, -0.46);
+                glVertex2f(0.36, -0.46);
+                glEnd();
+
+                glBegin(GL_QUADS);
+                glColor3ub(204,102,0);
+                glVertex2f(0.38,-0.46);
+                glVertex2f(-0.38, -0.46);
+                glVertex2f(-0.38, -0.48);
+                glVertex2f(0.38, -0.48);
+                glEnd();
 
  }
 
@@ -1046,18 +1201,10 @@ void display()
     river();
     rainView(isRain);
     hills();
-
-    glLoadIdentity();
-    glScalef(0.7,0.7,0);
-    glTranslatef(-0.15,-0.40,0);
-    //treeComponent();
-    glLoadIdentity();
     windmillview();
     distancetreeview();
     castle();
-
     keymappings(keymap);
-
     glFlush();
 }
 
