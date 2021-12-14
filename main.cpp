@@ -1,4 +1,4 @@
-#include <windows.h>7878
+#include <windows.h>
 #include <iostream>
 #include <GL/glut.h>
 #include <cmath>
@@ -13,7 +13,7 @@ float angle1=0.0;
 float angle2=120.0;
 float angle3=240.0;
 GLfloat cloud_position = 0.85f;
-GLfloat cloud_speed = 0.008f;
+GLfloat cloud_speed = 0.001f;
 int i;
 int triangleAmount = 500;
 const float DEG2RAD = 3.14159/180.0;
@@ -33,6 +33,7 @@ void Circle(GLfloat cx, GLfloat cy, GLfloat radius, int r, int g, int b)
 		}
 	glEnd();
 }
+
 void midPointEllipse(float xradius, float yradius, float q,float r,float g,float b)
 {
 	glBegin(GL_POLYGON);
@@ -92,11 +93,6 @@ void starComponent(){
     glBegin(GL_POINTS);
 	glColor3ub(255,255,255);
     glVertex2f(0.0f,0.79f);
-    /*glVertex2f(0.0f,0.9f);
-    glVertex2f(0.07f,0.8f);
-    glVertex2f(0.07f,0.7f);
-    glVertex2f(0.03f,0.56f);
-    glVertex2f(0.03f,0.45f);*/
     glVertex2f(0.03f,0.95f);
     glVertex2f(0.13f,0.79f);
     glVertex2f(0.13f,0.9f);
@@ -132,11 +128,6 @@ void starComponent(){
     glVertex2f(0.93f,0.785f);
     glVertex2f(0.98f,0.885f);
     glVertex2f(0.98f,0.285f);
-    /*glVertex2f(-0.0f,0.79f);
-    glVertex2f(-0.0f,0.9f);
-    glVertex2f(-0.07f,0.9f);
-    glVertex2f(-0.07f,0.7f);
-    glVertex2f(-0.03f,0.75f);*/
     glVertex2f(-0.03f,0.85f);
     glVertex2f(-0.03f,0.95f);
     glVertex2f(-0.13f,0.79f);
@@ -174,7 +165,6 @@ void starComponent(){
     glVertex2f(-0.98f,0.885f);
     glVertex2f(-0.98f,0.285f);
     glEnd();
-    glPointSize(7);
 }
 
 
@@ -213,7 +203,7 @@ void update(int value) {
     cloud_position -=cloud_speed;
 
     glutPostRedisplay();
-    glutTimerFunc(100, update, 0);
+    glutTimerFunc(20, update, 0);
 }
 void cloudView(){
     glPushMatrix();
@@ -239,7 +229,6 @@ void cloudviewDAy(){
 
     glPopMatrix();
 }
-
 void HalfCircle(float r1,float r,float g,float b){
 glPushMatrix();
 	glBegin(GL_POLYGON);
@@ -329,6 +318,9 @@ void handleKeypress(unsigned char key, int x, int y) {
         break;
     case 's':
         sound = !sound;
+        if(sound==false){
+            PlaySound(NULL, NULL, SND_FILENAME|SND_ASYNC|SND_LOOP);
+        }
         break;
     case 'e':
         exit(0);
@@ -678,7 +670,6 @@ void distancetreeview(){
      glBegin(GL_QUADS);
                 glColor3ub(0,204,0);
                 glVertex2f(-1,-0.25);
-                //glColor3ub(178,255,102);
                 glVertex2f(1, -0.25);
                  glColor3ub(229,255,204);
                 glVertex2f(1, -1);
@@ -1196,15 +1187,15 @@ void windmillview(){
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    SkyComponent(isDay);
-    groundview();
-    river();
-    rainView(isRain);
-    hills();
-    windmillview();
-    distancetreeview();
-    castle();
-    keymappings(keymap);
+    SkyComponent(isDay);//galib
+    groundview();//urmi
+    river();//urmi
+    rainView(isRain);//sani
+    hills();//galib
+    windmillview();//sani
+    distancetreeview();//galib
+    castle();//sani
+    keymappings(keymap);//sani
     glFlush();
 }
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1639071257 source:e:\fall 21-22\computer graphics[o]\castle\main.cpp
+1639153436 source:e:\fall 21-22\computer graphics[o]\castle\main.cpp
 	<windows.h>
 	<iostream>
 	<GL/glut.h>
@@ -229,4 +229,11 @@
 1301111164 c:\program files (x86)\codeblocks\mingw\include\gl\glu.h
 	<stddef.h>
 	<GL/gl.h>
+
+1639476768 source:c:\users\mahta\onedrive\desktop\castle\main.cpp
+	<windows.h>
+	<iostream>
+	<GL/glut.h>
+	<cmath>
+	<mmsystem.h>
 
